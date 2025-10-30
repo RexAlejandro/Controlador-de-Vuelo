@@ -1,103 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- README.xml - Proyecto Radar Ultrasónico con Arduino -->
+
 <project>
-  <name>Radar Ultrasónico con Arduino</name>
+  <title>📡 Radar Ultrasónico con Arduino</title>
 
   <description>
-    Proyecto basado en Arduino UNO que utiliza un sensor ultrasónico HC-SR04 y un servomotor
-    para detectar objetos cercanos y simular un sistema de radar o control aéreo.
-    El sistema realiza un barrido de 150° mediante el servomotor y mide distancias en cada ángulo.
-    Los resultados se muestran en el monitor serial o mediante una interfaz gráfica con Processing.
+    Este proyecto implementa un sistema de radar mediante un sensor ultrasónico (HC-SR04) y un servomotor controlados por un microcontrolador Arduino UNO. 
+    Permite detectar objetos cercanos mediante pulsos ultrasónicos, simulando un sistema de control aéreo o de proximidad que puede adaptarse tanto a drones como a vehículos terrestres.
   </description>
 
-  <requirements>
-    <hardware>
-      <component>Arduino UNO (o microcontrolador compatible)</component>
-      <component>Sensor ultrasónico HC-SR04</component>
-      <component>Servomotor SG90</component>
-      <component>Batería de 9V o conexión USB</component>
-      <component>Cables jumpers</component>
-    </hardware>
-
+  <section name="📋 Requisitos e Instalación">
     <software>
-      <tool>Arduino IDE - https://www.arduino.cc/en/software</tool>
-      <tool>Processing (para interfaz de radar) - https://processing.org/download</tool>
-      <tool>Git (para clonar o contribuir al proyecto) - https://git-scm.com/</tool>
-      <library>Servo.h (incluida en el IDE de Arduino)</library>
+      <item>🧠 Arduino IDE → <link>https://www.arduino.cc/en/software</link></item>
+      <item>💻 Processing (visualización) → <link>https://processing.org/download</link></item>
+      <item>🔧 Git (para clonar o contribuir) → <link>https://git-scm.com/</link></item>
+      <item>📚 Librería Servo → Incluida en el IDE de Arduino</item>
     </software>
-  </requirements>
 
-  <installation>
+    <hardware>
+      <item>🔌 Arduino UNO (o compatible)</item>
+      <item>📡 Sensor ultrasónico HC-SR04</item>
+      <item>⚙️ Servomotor SG90</item>
+      <item>🔋 Fuente de alimentación de 5V o batería de 9V</item>
+      <item>🧵 Cables de conexión y protoboard</item>
+    </hardware>
+  </section>
+
+  <section name="🚀 Cómo Usarlo">
+    <step>1️⃣ Clona el repositorio:
+      <code>git clone https://github.com/RexAlejandro/Controlador-de-Vuelo</code>
+    </step>
+
+    <step>2️⃣ Abre el archivo del radar en Arduino IDE.</step>
+    <step>3️⃣ Conecta los componentes según el mapeo de pines:</step>
+
+    <connections>
+      <item>HC-SR04 (Trig) → Pin 10</item>
+      <item>HC-SR04 (Echo) → Pin 11</item>
+      <item>Servo (Señal) → Pin 12</item>
+      <item>VCC → 5V / GND → GND</item>
+    </connections>
+
+    <step>4️⃣ Sube el código al Arduino (verifica el puerto COM correcto).</step>
+    <step>5️⃣ Ejecuta el programa en Processing (opcional) para ver la interfaz de radar.</step>
+
+    <exampleOutput>
+      <code>
+        15,120.
+        16,118.
+        17,115.
+      </code>
+      <note>Cada línea muestra el ángulo y la distancia detectada.</note>
+    </exampleOutput>
+  </section>
+
+  <section name="🧩 Estructura del Proyecto">
+    <directory>
+      <folder name="Controlador-de-Vuelo/">
+        <file>Radar.ino - Código principal del radar</file>
+        <file>README.xml - Archivo de documentación</file>
+        <folder name="docs/">
+          <file>Diagrama_Pictorico.png</file>
+          <file>Diagrama_Bloques.png</file>
+          <file>Diagrama_Esquematico.png</file>
+        </folder>
+        <folder name="simulaciones/">
+          <file>Radar_Proteus.pdsprj - Simulación en Proteus</file>
+          <file>Radar_Tinkercad_Link.txt</file>
+        </folder>
+      </folder>
+    </directory>
+  </section>
+
+  <section name="🧠 Funcionamiento Interno">
+    <architecture>
+      <block name="Sensor HC-SR04">
+        <description>Emite ondas ultrasónicas mediante el pin TRIG (10) y recibe su eco en el pin ECHO (11).</description>
+      </block>
+
+      <block name="Arduino UNO">
+        <description>Coordina el envío y recepción de señales, calcula distancias y controla el servomotor.</description>
+      </block>
+
+      <block name="Servomotor SG90">
+        <description>Recibe señales PWM desde el pin 12 para girar de 15° a 165° y escanear el entorno.</description>
+      </block>
+
+      <block name="Monitor Serial / Processing">
+        <description>Muestra el ángulo actual y la distancia detectada en formato texto o visual.</description>
+      </block>
+    </architecture>
+  </section>
+
+  <section name="🧪 Tests y Simulación">
+    <testOption>✔️ Simulación en <link>https://www.tinkercad.com/things/2F2I2L3YdKA/editel?sharecode=eQQQH-Y1JWLQfHgqyFGXcCsHEWa90hwFSyQ8MCwwfc0</link></testOption>
+    <testOption>✔️ Archivo base en Proteus incluido para validar conexiones.</testOption>
+    <testOption>✔️ Salida en consola serial para comprobar valores de distancia en tiempo real.</testOption>
+  </section>
+
+  <section name="🤝 Cómo Contribuir">
     <steps>
-      <step>1. Clona el repositorio con: 
-        <code>git clone https://github.com/RexAlejandro/Controlador-de-Vuelo</code>
-      </step>
-      <step>2. Abre el archivo <code>Radar.ino</code> en el Arduino IDE.</step>
-      <step>3. Conecta la placa Arduino UNO a la computadora.</step>
-      <step>4. Selecciona la placa y el puerto correctos en el IDE.</step>
-      <step>5. Carga el código al Arduino (clic en “Subir”).</step>
-      <step>6. Si usas Processing, copia el código del radar del IDE de Arduino y ejecútalo para visualizar el barrido.</step>
+      <item>Realiza un fork del proyecto desde <link>https://github.com/RexAlejandro/Controlador-de-Vuelo</link>.</item>
+      <item>Crea una nueva rama para tu mejora: 
+        <code>git checkout -b feature/nueva-mejora</code>
+      </item>
+      <item>Guarda tus cambios:
+        <code>git add .</code>
+        <code>git commit -m "feat: descripción de la mejora"</code>
+        <code>git push origin feature/nueva-mejora</code>
+      </item>
+      <item>Abre un Pull Request detallando tus aportes.</item>
     </steps>
-  </installation>
+  </section>
 
-  <usage>
-    <commands>
-      <command>git add .</command>
-      <command>git commit -m "feat: descripción de la mejora"</command>
-      <command>git push origin feature/nueva-funcion</command>
-    </commands>
-
-    <examples>
-      <example>
-        <description>Ejemplo de salida por consola:</description>
-        <code>45,120.  
-46,118.  
-47,117.</code>
-      </example>
-    </examples>
-
-    <notes>
-      <note>El servomotor realiza un barrido entre 15° y 165° midiendo la distancia en cada ángulo.</note>
-      <note>Los datos se envían por el puerto serial para su visualización.</note>
-    </notes>
-  </usage>
-
-  <tests>
-    <description>
-      El sistema puede probarse mediante el IDE de Arduino o en simuladores como Tinkercad y Proteus.
-      Los valores de distancia y ángulo se muestran en consola y pueden verificarse visualmente en la interfaz de radar.
-    </description>
-    <links>
-      <link>Tinkercad: https://www.tinkercad.com/things/2F2I2L3YdKA/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits</link>
-    </links>
-  </tests>
-
-  <structure>
-    <folders>
-      <folder>/Radar</folder>
-      <folder>/docs</folder>
-      <folder>/images</folder>
-    </folders>
-    <files>
-      <file>Radar.ino - Código principal del radar ultrasónico</file>
-      <file>README.xml - Documento descriptivo del proyecto</file>
-      <file>Proteus_Radar.pdsprj - Archivo base de simulación en Proteus</file>
-    </files>
-  </structure>
-
-  <contribution>
-    <repository>https://github.com/RexAlejandro/Controlador-de-Vuelo</repository>
-    <instructions>
-      <step>1. Realiza un fork del proyecto.</step>
-      <step>2. Aplica tus modificaciones o mejoras.</step>
-      <step>3. Haz un commit y push a tu rama.</step>
-      <step>4. Envía un Pull Request al repositorio original explicando los cambios.</step>
-    </instructions>
-  </contribution>
-
-  <license>
-    <text>
-      Este proyecto se distribuye con fines educativos y de investigación.
-      Puede ser modificado y compartido libremente, citando la fuente original.
-    </text>
-  </license>
+  <section name="📜 Créditos">
+    <author>👨‍💻 Rene Alejandro Villanueva Moreno</author>
+    <author>👨‍💻 Aldair Alejandro Beltran Melendez</author>
+    <author>👨‍💻 Rodolfo Cavazos Almaguer</author>
+    <repo>🌐 Repositorio oficial: <link>https://github.com/RexAlejandro/Controlador-de-Vuelo</link></repo>
+  </section>
 </project>
