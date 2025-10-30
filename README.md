@@ -1,121 +1,102 @@
-<!-- README.xml - Proyecto Radar Ultrasónico con Arduino -->
+# 📡 Radar Ultrasónico con Arduino
 
-<project>
-  <title>📡 Radar Ultrasónico con Arduino</title>
+Este proyecto implementa un sistema de radar mediante un sensor ultrasónico (**HC-SR04**) y un **servomotor** controlados por un **Arduino UNO**.  
+Permite detectar objetos cercanos mediante pulsos ultrasónicos, simulando un sistema de control aéreo o de proximidad que puede adaptarse tanto a **drones** como a **vehículos terrestres**.
 
-  <description>
-    Este proyecto implementa un sistema de radar mediante un sensor ultrasónico (HC-SR04) y un servomotor controlados por un microcontrolador Arduino UNO. 
-    Permite detectar objetos cercanos mediante pulsos ultrasónicos, simulando un sistema de control aéreo o de proximidad que puede adaptarse tanto a drones como a vehículos terrestres.
-  </description>
+---
 
-  <section name="📋 Requisitos e Instalación">
-    <software>
-      <item>🧠 Arduino IDE → <link>https://www.arduino.cc/en/software</link></item>
-      <item>💻 Processing (visualización) → <link>https://processing.org/download</link></item>
-      <item>🔧 Git (para clonar o contribuir) → <link>https://git-scm.com/</link></item>
-      <item>📚 Librería Servo → Incluida en el IDE de Arduino</item>
-    </software>
+## 📋 Requisitos e Instalación
 
-    <hardware>
-      <item>🔌 Arduino UNO (o compatible)</item>
-      <item>📡 Sensor ultrasónico HC-SR04</item>
-      <item>⚙️ Servomotor SG90</item>
-      <item>🔋 Fuente de alimentación de 5V o batería de 9V</item>
-      <item>🧵 Cables de conexión y protoboard</item>
-    </hardware>
-  </section>
+### 🧠 Software
+- [Arduino IDE](https://www.arduino.cc/en/software)
+- [Processing (visualización)](https://processing.org/download)
+- [Git (para clonar o contribuir)](https://git-scm.com/)
+- 📚 Librería **Servo** (incluida en el IDE de Arduino)
 
-  <section name="🚀 Cómo Usarlo">
-    <step>1️⃣ Clona el repositorio:
-      <code>git clone https://github.com/RexAlejandro/Controlador-de-Vuelo</code>
-    </step>
+### ⚙️ Hardware
+- 🔌 Arduino UNO (o compatible)
+- 📡 Sensor ultrasónico **HC-SR04**
+- ⚙️ Servomotor **SG90**
+- 🔋 Fuente de alimentación de **5V** o batería de **9V**
+- 🧵 Cables de conexión y **protoboard**
 
-    <step>2️⃣ Abre el archivo del radar en Arduino IDE.</step>
-    <step>3️⃣ Conecta los componentes según el mapeo de pines:</step>
+## 🚀 Cómo Usarlo
+### 1️⃣ Clona el repositorio
+```bash
+git clone https://github.com/RexAlejandro/Controlador-de-Vuelo
+```
+### 2️⃣ Abre el archivo del radar en Arduino IDE.
 
-    <connections>
-      <item>HC-SR04 (Trig) → Pin 10</item>
-      <item>HC-SR04 (Echo) → Pin 11</item>
-      <item>Servo (Señal) → Pin 12</item>
-      <item>VCC → 5V / GND → GND</item>
-    </connections>
+# 📡 Radar Ultrasónico con Arduino
 
-    <step>4️⃣ Sube el código al Arduino (verifica el puerto COM correcto).</step>
-    <step>5️⃣ Ejecuta el programa en Processing (opcional) para ver la interfaz de radar.</step>
+## 3️⃣ Conexión de Componentes
 
-    <exampleOutput>
-      <code>
-        15,120.
-        16,118.
-        17,115.
-      </code>
-      <note>Cada línea muestra el ángulo y la distancia detectada.</note>
-    </exampleOutput>
-  </section>
+Conecta los componentes según el siguiente mapeo de pines:
 
-  <section name="🧩 Estructura del Proyecto">
-    <directory>
-      <folder name="Controlador-de-Vuelo/">
-        <file>Radar.ino - Código principal del radar</file>
-        <file>README.xml - Archivo de documentación</file>
-        <folder name="docs/">
-          <file>Diagrama_Pictorico.png</file>
-          <file>Diagrama_Bloques.png</file>
-          <file>Diagrama_Esquematico.png</file>
-        </folder>
-        <folder name="simulaciones/">
-          <file>Radar_Proteus.pdsprj - Simulación en Proteus</file>
-          <file>Radar_Tinkercad_Link.txt</file>
-        </folder>
-      </folder>
-    </directory>
-  </section>
+- **HC-SR04 (Trig)** → Pin 10  
+- **HC-SR04 (Echo)** → Pin 11  
+- **Servo (Señal)** → Pin 12  
+- **VCC** → 5V / **GND** → GND  
 
-  <section name="🧠 Funcionamiento Interno">
-    <architecture>
-      <block name="Sensor HC-SR04">
-        <description>Emite ondas ultrasónicas mediante el pin TRIG (10) y recibe su eco en el pin ECHO (11).</description>
-      </block>
+## 4️⃣ Subida del Código
 
-      <block name="Arduino UNO">
-        <description>Coordina el envío y recepción de señales, calcula distancias y controla el servomotor.</description>
-      </block>
+Sube el código al Arduino (verifica que el puerto COM sea el correcto).
 
-      <block name="Servomotor SG90">
-        <description>Recibe señales PWM desde el pin 12 para girar de 15° a 165° y escanear el entorno.</description>
-      </block>
+## 5️⃣ Ejecución de la Interfaz
 
-      <block name="Monitor Serial / Processing">
-        <description>Muestra el ángulo actual y la distancia detectada en formato texto o visual.</description>
-      </block>
-    </architecture>
-  </section>
+Ejecuta el programa en **Processing** (opcional) para ver la interfaz de radar.
 
-  <section name="🧪 Tests y Simulación">
-    <testOption>✔️ Simulación en <link>https://www.tinkercad.com/things/2F2I2L3YdKA/editel?sharecode=eQQQH-Y1JWLQfHgqyFGXcCsHEWa90hwFSyQ8MCwwfc0</link></testOption>
-    <testOption>✔️ Archivo base en Proteus incluido para validar conexiones.</testOption>
-    <testOption>✔️ Salida en consola serial para comprobar valores de distancia en tiempo real.</testOption>
-  </section>
+### Ejemplo de salida
+<code> 15,120. 16,118. 17,115. </code> 
 
-  <section name="🤝 Cómo Contribuir">
-    <steps>
-      <item>Realiza un fork del proyecto desde <link>https://github.com/RexAlejandro/Controlador-de-Vuelo</link>.</item>
-      <item>Crea una nueva rama para tu mejora: 
-        <code>git checkout -b feature/nueva-mejora</code>
-      </item>
-      <item>Guarda tus cambios:
-        <code>git add .</code>
-        <code>git commit -m "feat: descripción de la mejora"</code>
-        <code>git push origin feature/nueva-mejora</code>
-      </item>
-      <item>Abre un Pull Request detallando tus aportes.</item>
-    </steps>
-  </section>
+> Cada línea muestra el **ángulo** y la **distancia detectada**.
 
-  <section name="📜 Créditos">
-    <author>👨‍💻 Rene Alejandro Villanueva Moreno</author>
-    <author>👨‍💻 Aldair Alejandro Beltran Melendez</author>
-    <author>👨‍💻 Rodolfo Cavazos Almaguer</author>
-    <repo>🌐 Repositorio oficial: <link>https://github.com/RexAlejandro/Controlador-de-Vuelo</link></repo>
-  </section>
-</project>
+
+---
+
+## 🧠 Funcionamiento Interno
+
+### Sensor HC-SR04
+- Emite ondas ultrasónicas mediante el pin **TRIG (10)** y recibe el eco en **ECHO (11)**.
+
+### Arduino UNO
+- Coordina el envío y recepción de señales, calcula distancias y controla el servomotor.
+
+### Servomotor SG90
+- Recibe señales **PWM** desde el pin 12 para girar de 15° a 165° y escanear el entorno.
+
+### Monitor Serial / Processing
+- Muestra el ángulo actual y la distancia detectada en formato texto o visual.
+
+---
+
+## 🧪 Tests y Simulación
+
+- ✔️ Simulación en [Tinkercad](https://www.tinkercad.com/things/2F2I2L3YdKA/editel?sharecode=eQQQH-Y1JWLQfHgqyFGXcCsHEWa90hwFSyQ8MCwwfc0)  
+- ✔️ Archivo base en Proteus incluido para validar conexiones  
+- ✔️ Salida en consola serial para comprobar valores de distancia en tiempo real  
+
+---
+
+## 🤝 Cómo Contribuir
+
+1. Realiza un fork del proyecto desde [GitHub](https://github.com/RexAlejandro/Controlador-de-Vuelo)  
+2. Crea una nueva rama para tu mejora:  
+   <code>git checkout -b feature/nueva-mejora</code>  
+3. Guarda tus cambios:  
+   <code>git add .</code>  
+   <code>git commit -m "feat: descripción de la mejora"</code>  
+   <code>git push origin feature/nueva-mejora</code>  
+4. Abre un Pull Request detallando tus aportes.
+
+---
+
+## 📜 Créditos
+
+- 👨‍💻 Rene Alejandro Villanueva Moreno  
+- 👨‍💻 Aldair Alejandro Beltran Melendez  
+- 👨‍💻 Rodolfo Cavazos Almaguer  
+
+🌐 Repositorio oficial: [https://github.com/RexAlejandro/Controlador-de-Vuelo](https://github.com/RexAlejandro/Controlador-de-Vuelo)
+
+
